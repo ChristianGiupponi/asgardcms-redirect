@@ -9,8 +9,8 @@ class UpdateRedirectRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'from' => 'required|url',
-            'to' => 'required|url|different:from',
+            'from' => 'required|url|max:255',
+            'to' => 'required|url|different:from|max:255',
             'type' => 'required|in:301,302',
         ];
     }
