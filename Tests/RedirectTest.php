@@ -103,6 +103,15 @@ class RedirectTest extends BaseRedirectTestCase
     }
 
     /** @test */
+    public function it_restrict_path_length_to_match_db()
+    {
+        $longPath = 'https://www.example.org/' . str_repeat('A', 255);
+
+        self::assertFalse($this->validateField('to', $longPath));
+        self::assertFalse($this->validateField('from', $longPath));
+    }
+
+    /** @test */
     public function it_throw_query_exception_if_some_fields_is_missing()
     {
         $this->expectException(QueryException::class);
